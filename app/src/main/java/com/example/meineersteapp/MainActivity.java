@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import androidx.appcompat.app.AppCompatActivity;
-
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -56,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
                         matnoasci = convertascii(test.toString());
 
                     }
-
-
 
 
                 } catch (IOException e) {
