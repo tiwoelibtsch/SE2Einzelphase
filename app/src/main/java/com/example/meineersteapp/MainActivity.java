@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void ClickCalculateascii(View view){
+        System.out.println("clickcalculate" + matnoasci);
 
         Intent myIntent = new Intent(MainActivity.this, ShowASCII.class);
 
