@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -11,11 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+
 import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,25 +31,28 @@ public class MainActivity extends AppCompatActivity {
     public void onClick (View view) {
         System.out.println("Test");
         TextView answer = findViewById(R.id.answer);
-        answer.setText("test");
+        TextView matnoinput = findViewById(R.id.matno);
+
                 try {
 
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                     StrictMode.setThreadPolicy(policy);
 
                     Socket socket = new Socket("se2-submission.aau.at", 20080);
-                    DataOutputStream matno = new DataOutputStream(socket.getOutputStream());
-                    //BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
+                    DataOutputStream output = new DataOutputStream(socket.getOutputStream());
 
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    String testmatno = "01561075";
+                    //String testmatno = "01561075";
+                    CharSequence test = matnoinput.getText();
+                    System.out.println(test.toString());
 
-
-                    matno.writeBytes(testmatno+'\n');
-                    System.out.println("Test3");
-                    System.out.println(in.readLine());
+                    output.writeBytes(test.toString()+'\n');
+                    String result = in.readLine();
+                    answer.setText(result);
                     socket.close();
+                    Button ascii = findViewById(R.id.ASCII);
+                    ascii.setVisibility(View.VISIBLE);
+
 
 
 
@@ -61,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+    }
+
+
+    public void ClickCalculateascii(View view){
 
 
     }
