@@ -1,17 +1,18 @@
 package com.example.meineersteapp;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
-import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
+import android.widget.TextView;
+
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -22,33 +23,45 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        final Button abschicken = findViewById(R.id.button1);
-        abschicken.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
+
+    }
+    public void onClick (View view) {
+        System.out.println("Test");
+        TextView answer = findViewById(R.id.answer);
+        answer.setText("test");
                 try {
+
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+
                     Socket socket = new Socket("se2-submission.aau.at", 20080);
-                    BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                    out.write(11912049);
+                    DataOutputStream matno = new DataOutputStream(socket.getOutputStream());
+                    //BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
 
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    String meassageReceived=in.readLine();
+                    String testmatno = "01561075";
+
+
+                    matno.writeBytes(testmatno+'\n');
+                    System.out.println("Test3");
+                    System.out.println(in.readLine());
+                    socket.close();
+
+
 
                 } catch (IOException e) {
+                    System.out.println("Exception thrown");
                     throw new RuntimeException(e);
                 }
 
 
-            }
-        });
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+
+
+
     }
 }
