@@ -15,9 +15,7 @@ public class ShowASCII extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
-        String result = intent.getStringExtra("key");
-        System.out.println("new activity" + result);
-        CharSequence test = result;
+        CharSequence test =  intent.getStringExtra("key");
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);

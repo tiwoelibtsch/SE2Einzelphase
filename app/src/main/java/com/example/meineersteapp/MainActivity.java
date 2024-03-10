@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                     answer.setText(result);
                     socket.close();
                     if(!result.equals("Dies ist keine gueltige Matrikelnummer")){
-                        System.out.println("Test bestanden");
                         Button ascii = findViewById(R.id.ASCII);
                         ascii.setVisibility(View.VISIBLE);
                         matnoasci = convertascii(test.toString());
@@ -76,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
 
     public String convertascii(String matno) {
         System.out.println("Test1"+matno);
-        String result = "";
-        String temp = matno;
-        char[] matnoarray = temp.toCharArray();
+
+
+        char[] matnoarray = matno.toCharArray();
 
         for (int i = 1; i<matnoarray.length; i=i+2){
             switch (matnoarray[i]){
@@ -115,11 +114,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        result = new String(matnoarray);
+        return new String(matnoarray);
 
-        System.out.println(result);
 
-    return result;
 
     }
     public void ClickCalculateascii(View view){
