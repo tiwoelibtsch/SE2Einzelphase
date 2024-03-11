@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Test");
         TextView answer = findViewById(R.id.answer);
         TextView matnoinput = findViewById(R.id.matno);
-
+        Button ascii = findViewById(R.id.ASCII);
+        ascii.setVisibility(View.INVISIBLE);
                 try {
 
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     answer.setText(result);
                     socket.close();
                     if(!result.equals("Dies ist keine gueltige Matrikelnummer")){
-                        Button ascii = findViewById(R.id.ASCII);
+
                         ascii.setVisibility(View.VISIBLE);
                         matnoasci = convertascii(test.toString());
 

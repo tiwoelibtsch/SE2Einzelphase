@@ -19,9 +19,9 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="288dp"
+        android:layout_width="320dp"
         android:layout_height="54dp"
-        android:text="Deine Matrikelnummer zu ASCII konvertiert"
+        android:text="Deine Matrikelnummer wurde zu ASCII konvertiert"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
